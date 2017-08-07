@@ -1,0 +1,152 @@
+************************************************************************************************************************
+Using SQL query, we extract the relevant rows and save the data into different category tables. The attribute "category_Id" in the "review_all" table is then updated using these data
+************************************************************************************************************************
+1.bevereges
+**************************************************************
+select * into "beverages" from "review_all" where "Summary" like '%beverage%' or "Text" like '%beverage%' 
+
+**************************************************************
+2.candy food
+**************************************************************
+select * into "candy_food" from "review_all" where "Summary" like '%candy%' and "Id" not in (Select "Id" from "review_all" where "Summary" like '%chocolate%') 
+
+**************************************************************
+3.Chocolate food
+**************************************************************
+select * into "chocolate_food" from "review_all" where "Summary" like '%chocolate%' and "Id" not in (Select "Id" from "review_all" where "Summary" like '%candy%')
+
+**************************************************************
+4.Cereal food
+**************************************************************
+select * into "cereal_food" from "review_all" where "Text" like '%cereals%'  or "Summary" like '%cereals%'  
+
+**************************************************************
+5.Snack food
+**************************************************************
+select * into "snack_food" from "review_all" where "Summary" like '%snacks%'  or "Text" like '%snacks%'
+
+**************************************************************
+6.separate cat food
+**************************************************************
+select * int "cat_food" from "review_all" where "Summary" like '%cat%'  
+and "Id" not in (select "Id" from "review_all"
+where "Summary" like '%dog%')
+
+**************************************************************
+7.separate dog food
+**************************************************************
+select * into "dog_food" from "review_all" where "Summary" like '%dog%'  
+and "Id" not in (select "Id" from "review_all"
+where "Summary" like '%cat%')
+
+**************************************************************
+8.canned food
+**************************************************************
+select * into "canned_food" from "review_all" Where "Summary" like '%canned%' 
+and "Summary" not like '%dog%' or "Text" not like '%dog%'
+and "Summary" not like '%cat%' or "Text" not like '%cat%'
+
+**************************************************************
+9.Packaged Meals
+**************************************************************
+select * into "packaged_meals" from "review_all" where "Summary" like '%packaged meals%' or "Text" like '%packaged meals%'
+
+**************************************************************
+10.baby food
+**************************************************************
+select * into "baby_food" from "review_all" where "Summary" like '%baby%'  
+
+
+**************************************************************
+11.beer
+**************************************************************
+select * into "beer_food" from "review_all" where "Summary" like '%beer%' 
+
+**************************************************************
+12.Fish Food
+**************************************************************
+select * into "fish_food" from "review_all" where "Summary" like '%fish%' 
+and "Id" not in (Select "Id" from "canned_food" UNION Select "Id" from "cat_food" UNION Select "Id" from "dog_food" UNION Select "Id" from "packaged_meals")
+and "Summary" not like '%Dogs%' and "Summary" not like '%Cats%';
+
+**************************************************************
+13.Meat Food
+**************************************************************
+select * into "meat_food" from "review_all" where "Summary" like '%meat%' 
+and "Id" not in (Select "Id" from "canned_food" UNION Select "Id" from "cat_food" UNION Select "Id" from "dog_food")
+and "Summary" not like '%Dogs%' and "Summary" not like '%Cats%';
+
+**************************************************************
+14.Pasta and Noodles
+**************************************************************
+select * into "noodles_pasta" from "review_all" where "Summary" like '%noodles%' or "Summary" like '%pasta%'  and "Category_Id" is NULL;
+
+**************************************************************
+15.Pizza and Burger
+**************************************************************
+select * into "pizza_burger" from "review_all" where "Summary" like '%pizza%' or "Summary" like '%burger%'  and "Category_Id" is NULL;
+
+**************************************************************
+16.Salads
+**************************************************************
+select * into "salads" from "review_all" where "Summary" like '%salad%' and "Category_Id" is NULL;
+
+***********************************************************************************************************************
+Finally the following queries are used to update the attribute "Category_id" in the table "review_all"
+***********************************************************************************************************************
+update "review_all" set "Category_Id" = (Select "Category_Id" from "Category" WHERE "Category_Name" = 'Beverages')
+WHERE "Id" IN (Select "Id" FROM "beverages");
+
+update "review_all" set "Category_Id" = (Select "Category_Id" from "Category" WHERE "Category_Name" = Candy
+WHERE "Id" IN (Select "Id" FROM "candy_food");
+
+update "review_all" set "Category_Id" = (Select "Category_Id" from "Category" WHERE "Category_Name" = 'Chocolate')
+WHERE "Id" IN (Select "Id" FROM "chocolate_food");
+
+update "review_all" set "Category_Id" = (Select "Category_Id" from "Category" WHERE "Category_Name" = 'Cereals')
+WHERE "Id" IN (Select "Id" FROM "cereal_food");
+
+update "review_all" set "Category_Id" = (Select "Category_Id" from "Category" WHERE "Category_Name" = 'Snacks')
+WHERE "Id" IN (Select "Id" FROM "snack_food");
+
+update "review_all" set "Category_Id" = (Select "Category_Id" from "Category" WHERE "Category_Name" = 'CatFood')
+WHERE "Id" IN (Select "Id" FROM "cat_food");
+
+update "review_all" set "Category_Id" = (Select "Category_Id" from "Category" WHERE "Category_Name" = 'DogFood')
+WHERE "Id" IN (Select "Id" FROM "dog_food");
+
+update "review_all" set "Category_Id" = (Select "Category_Id" from "Category" WHERE "Category_Name" = 'CannedFood')
+WHERE "Id" IN (Select "Id" FROM "canned_food");
+
+update "review_all" set "Category_Id" = (Select "Category_Id" from "Category" WHERE "Category_Name" = 'PackagedMeals')
+WHERE "Id" IN (Select "Id" FROM "packaged_meals");
+
+update "review_all" set "Category_Id" = (Select "Category_Id" from "Category" WHERE "Category_Name" = 'BabyFood')
+WHERE "Id" IN (Select "Id" FROM "baby_food");
+
+update "review_all" set "Category_Id" = (Select "Category_Id" from "Category" WHERE "Category_Name" = 'beer')
+WHERE "Id" IN (Select "Id" FROM "beer_food");
+
+update "review_all" set "Category_Id" = (Select "Category_Id" from "Category" WHERE "Category_Name" = 'FishFood')
+WHERE "Id" IN (Select "Id" FROM "fish_food");
+
+update "review_all" set "Category_Id" = (Select "Category_Id" from "Category" WHERE "Category_Name" = 'MeatFood')
+WHERE "Id" IN (Select "Id" FROM "meat_food");
+
+update "review_all" set "Category_Id" = (Select "Category_Id" from "Category" WHERE "Category_Name" = 'Noodles and Pasta') WHERE "Id" IN (Select "Id" FROM "noodles_pasta");
+
+update "review_all" set "Category_Id" = (Select "Category_Id" from "Category" WHERE "Category_Name" = 'Pizza and Burger') WHERE "Id" IN (Select "Id" FROM "pizza_burger");
+
+update "review_all" set "Category_Id" = (Select "Category_Id" from "Category" WHERE "Category_Name" = 'Salads') WHERE "Id" IN (Select "Id" FROM "salads");
+
+
+************************************************************************************************************************
+Now the rows with "Category_Id" as null will be deleted from the table "review_all" as those does not fall under the 16 categories
+************************************************************************************************************************
+delete from "review_all" where "Category_Id" IS NULL
+
+************************************************************************************************************************
+Now with the help of "review all table", we populate the "Product" table
+************************************************************************************************************************
+insert into "Product" ("product_id") select DISTINCT("ProductId") from "review_all" 
+update "Product" set "CategoryId" = (select "Category_Id" from "review_all" Where "Product_Id" = "Product".Product_)

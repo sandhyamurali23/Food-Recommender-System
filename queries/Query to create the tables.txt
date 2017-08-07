@@ -1,0 +1,70 @@
+************************************************************************************************************************
+Following queries create the four tables: Review, User, Product and Category. Then values are inserted into the table "Category"
+************************************************************************************************************************
+--Create the table "Review"
+************************************************************************************************************************
+Create table public."Review" (
+    Review_Id bigint,
+    Score bigint,
+    Product_Id text REFERENCES public."Product",
+    User_Id bigint REFERENCES public."User",
+    PRIMARY KEY(Review_Id)
+) 
+
+************************************************************************************************************************
+--Create the table "User"
+************************************************************************************************************************
+Create table public."User" (
+    User_Id bigint,
+    Profile_Name text,
+    PRIMARY KEY(User_Id)
+) 
+
+************************************************************************************************************************
+--Create the table "Product"
+************************************************************************************************************************
+Create table public."Product" (
+    Product_Id text,
+    Product_Name text,
+    Category_Id bigint REFERENCES public."Category",
+    PRIMARY KEY(Product_Id)
+) 
+
+************************************************************************************************************************
+--create the table "Category"
+************************************************************************************************************************
+
+CREATE TABLE public."Category"
+(
+    "Category_Id" bigint NOT NULL,
+    "Category_Name" text COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "Category_pkey" PRIMARY KEY ("Category_Id")
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."Category"
+    OWNER to postgres;
+
+******************************************************************************************************************
+insert categories into table "category"
+******************************************************************************************************************
+insert into public."Category" ("Category_Id","Category_Name") values (1,'Beverages');
+insert into public."Category" ("Category_Id","Category_Name") values (2,'Candy');
+insert into public."Category" ("Category_Id","Category_Name") values (3,'Chocolate');
+insert into public."Category" ("Category_Id","Category_Name") values (4,'Cereals');
+insert into public."Category" ("Category_Id","Category_Name") values (5,'Snacks');
+insert into public."Category" ("Category_Id","Category_Name") values (6,'CatFood');
+insert into public."Category" ("Category_Id","Category_Name") values (7,'DogFood');
+insert into public."Category" ("Category_Id","Category_Name") values (8,'CannedFood');
+insert into public."Category" ("Category_Id","Category_Name") values (9,'PackagedMeals');
+insert into public."Category" ("Category_Id","Category_Name") values (10,'BabyFood');
+insert into public."Category" ("Category_Id","Category_Name") values (11,'beer');
+insert into public."Category" ("Category_Id","Category_Name") values (12,'FishFood');
+insert into public."Category" ("Category_Id","Category_Name") values (13,'MeatFood');
+insert into public."Category" ("Category_Id","Category_Name") values (14,'Noodles and Pasta');
+insert into public."Category" ("Category_Id","Category_Name") values (15,'Pizza and Burger');
+insert into public."Category" ("Category_Id","Category_Name") values (16,'Salads');
+s******************************************************************************************************************

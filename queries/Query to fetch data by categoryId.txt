@@ -1,0 +1,5 @@
+************************************************************************************************************************
+This is the main query to list all the products which comes under a particular category in the decreasing order of average Score 
+************************************************************************************************************************
+select "ProductId",AVG("Score")AS "average" from "Review_New" where "ProductId" IN (Select "product_id" from "Product" where "category_id" = 3)
+group by "ProductId" order by "average" desc

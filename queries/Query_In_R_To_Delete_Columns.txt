@@ -1,0 +1,3 @@
+/* This query is used to delete the columns HelpfulnessNumerator, HelpfulnessDenominator and Time form the dataset*/
+
+df=subset(AmazonDataSet, select = -c(HelpfulnessNumerator,HelpfulnessDenominator,Time))

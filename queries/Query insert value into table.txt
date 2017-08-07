@@ -1,0 +1,20 @@
+******************************************************************************************************************
+insert categories into table "category"
+******************************************************************************************************************
+insert into public."Category" ("Category_Id","Category_Name") values (1,'Beverages');
+insert into public."Category" ("Category_Id","Category_Name") values (2,'Candy');
+insert into public."Category" ("Category_Id","Category_Name") values (3,'Chocolate');
+insert into public."Category" ("Category_Id","Category_Name") values (4,'Cereals');
+insert into public."Category" ("Category_Id","Category_Name") values (5,'Snacks');
+insert into public."Category" ("Category_Id","Category_Name") values (6,'CatFood');
+insert into public."Category" ("Category_Id","Category_Name") values (7,'DogFood');
+insert into public."Category" ("Category_Id","Category_Name") values (8,'CannedFood');
+insert into public."Category" ("Category_Id","Category_Name") values (9,'PackagedMeals');
+insert into public."Category" ("Category_Id","Category_Name") values (10,'BabyFood');
+insert into public."Category" ("Category_Id","Category_Name") values (11,'beer');
+insert into public."Category" ("Category_Id","Category_Name") values (12,'FishFood');
+insert into public."Category" ("Category_Id","Category_Name") values (13,'MeatFood');
+insert into public."Category" ("Category_Id","Category_Name") values (14,'Noodles and Pasta');
+insert into public."Category" ("Category_Id","Category_Name") values (15,'Pizza and Burger');
+insert into public."Category" ("Category_Id","Category_Name") values (16,'Salads');
+s******************************************************************************************************************

@@ -1,0 +1,44 @@
+﻿<Window x:Class="FoodRecomender.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoodRecomender"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1600" Width="1500">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Food.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Button x:Name="button" Height="40" Background="LightGreen" Content="Get the Items" HorizontalAlignment="Left" VerticalAlignment="Top" Width="103" Margin="50,84,0,0" Click="button_Click"/>
+            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="120" Margin="182,32,0,0" SelectionChanged="comboBox_SelectionChanged">
+                <ComboBoxItem Content="Please Select" IsSelected="True"/>
+                <ComboBoxItem Content="Beverages" />
+                <ComboBoxItem Content="Candy" />
+                <ComboBoxItem Content="Chocolate" />
+                <ComboBoxItem Content="Cereals" />
+                <ComboBoxItem Content="Snacks" />
+                <ComboBoxItem Content="CatFood" />
+                <ComboBoxItem Content="DogFood" />
+                <ComboBoxItem Content="CannedFood" />
+                <ComboBoxItem Content="PackagedMeals" />
+                <ComboBoxItem Content="BabyFood" />
+                <ComboBoxItem Content="beer" />
+                <ComboBoxItem Content="FishFood" />
+                <ComboBoxItem Content="MeatFood" />
+                <ComboBoxItem Content="Noodles and Pasta" />
+                <ComboBoxItem Content="Pizza and Burger" />
+                <ComboBoxItem Content="Salads" />
+
+            </ComboBox>
+
+            <Button x:Name="button1" Height="40" Background="LightGreen" Content="Clear all" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Margin="329,84,0,0" Click="button1_Click"/>
+        </Grid>
+        <Grid>
+            <Border HorizontalAlignment="Center" VerticalAlignment="Bottom" BorderBrush="Black" BorderThickness="2">
+                <DataGrid Height="600" HorizontalAlignment="Center" Margin="4,4,4,4" Name="grid1" VerticalAlignment="Bottom" Width="106" Background="#FFF2F2F2"/>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

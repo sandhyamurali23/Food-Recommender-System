@@ -1,0 +1,12 @@
+CREATE TABLE "review_all"
+(
+    id bigint,
+    productid text,
+    userid text,
+    profilename text,
+    score integer,
+    summary text,
+    "Text" text
+);
+
+copy "review_all" FROM '/Users/joetomjob/Documents/Reviews.csv' DELIMITER ',' CSV;
