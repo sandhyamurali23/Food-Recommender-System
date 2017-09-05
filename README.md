@@ -1,2 +1,2 @@
 # Food-Recommender-System
-This system takes the category of the food preference provided by the user and recommends food products in that category based on the ratings and reviews available in the dataset.  The product IDS displayed to the user redirects to the product in the amazon website.  Achieved an accuracy of 80% in recommending the right food product to the user
+This system takes the category of the food preference provided by the user and recommends food products in that category based on the ratings available in the PostgreSQL database. The product ID’s that are displayed to the user is redirected to the product in the amazon website using Amazon API’s. Achieved an accuracy of 80% in recommending the right food product to the user
